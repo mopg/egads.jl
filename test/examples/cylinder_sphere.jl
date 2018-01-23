@@ -1,3 +1,4 @@
+using jegads
 
 # const libegads_include = "/home/mopg/code/EngSketchPad/lib/libegads.so"
 # include the above in the precompilation step. use libdl.find_library to look for common places where this library file is located
@@ -57,3 +58,6 @@ status = EG_deleteObject(ebody2)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 status = EG_deleteObject(emodel)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
+
+# close everything
+cleanup( context )

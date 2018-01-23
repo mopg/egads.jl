@@ -3,3 +3,8 @@ function cleanup( status::Cint, context::ego )
     status = EG_close(context)
     @printf("EG_close -> status=%d\n", status);
 end
+
+function cleanup( context::ego )
+    status = EG_close(context)
+    @printf("EG_close -> status=%d\n", status);
+end
