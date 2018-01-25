@@ -1,7 +1,7 @@
 
 # functions
 export EG_open, EG_makeSolidBody, EG_solidBoolean, EG_saveModel
-export EG_deleteObject, EG_close
+export EG_getTopology, EG_deleteObject, EG_close
 
 # types
 export ego
