@@ -5,7 +5,6 @@ rad   = 1.0
 
 (context, status) = eg_open( )
 if (status < 0) error("Can't open, failure code: %i", status) end
-@show context
 
 # build cylinder
 datacyl = [0.0, 0.0,  width/2.0,
@@ -19,8 +18,18 @@ datasph = [0.0, 0.0, -width/2.0, rad]
 (ebody2, status) = makeSolidBody(context, SPHERE, datasph)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
+datasph = [0.0, 0.0,  width/2.0, rad]
+(ebody3, status) = makeSolidBody(context, SPHERE, datasph)
+if (status != EGADS_SUCCESS) cleanup(status, context) end
+
 # boolean operations
-(emodel, status) = solidBoolean(ebody1, ebody2, FUSION)
+(emodel2, status) = solidBoolean(ebody1, ebody2, FUSION)
+if (status != EGADS_SUCCESS) cleanup(status, context) end
+
+# add second sphere
+(ebody4, status) = getBodyFromModel( emodel2 )
+if (status != EGADS_SUCCESS) cleanup(status, context) end
+(emodel, status) = solidBoolean(ebody4, ebody3, FUSION)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
 # save model
@@ -34,7 +43,13 @@ status = EG_deleteObject(ebody1)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 status = EG_deleteObject(ebody2)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
+status = EG_deleteObject(ebody3)
+if (status != EGADS_SUCCESS) cleanup(status, context) end
+status = EG_deleteObject(ebody4)
+if (status != EGADS_SUCCESS) cleanup(status, context) end
 status = EG_deleteObject(emodel)
+if (status != EGADS_SUCCESS) cleanup(status, context) end
+status = EG_deleteObject(emodel2)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
 # close everything

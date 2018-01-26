@@ -48,32 +48,27 @@ ebody3 = egO_4[] # dereference the pointer to obtain the pointer to egObject
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
 # boolean operations
-println("Join cylinder and first sphere")
 status = EG_solidBoolean(ebody1, ebody2, FUSION, egO_5)
 emodel2 = egO_5[]
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
 # add second sphere
-println("Get children")
 oclass0 = Ref{Int32}(0)
-mtype0 = Ref{Int32}(0)
+mtype0  = Ref{Int32}(0)
 nchild0 = Ref{Int32}(0)
 senses0 = Ref{Ptr{Int32}}(0)
-data0 = fill(0.0, 4)
-status = EG_getTopology( emodel2 , egO_2 , oclass0 , mtype0 ,
-                         data0   , nchild0 , egO_O_1 ,  senses0 )
+data0   = fill(0.0, 4)
+status  = EG_getTopology( emodel2 , egO_2 , oclass0 , mtype0 ,
+                          data0   , nchild0 , egO_O_1 ,  senses0 )
 if (status != EGADS_SUCCESS) cleanup(status, context) end
-println("nchild0 ", nchild0[] )
 carray = egO_O_1[]
 child0 = unsafe_load(carray,1)
 
-println("Join second cylinder")
 status = EG_solidBoolean(child0, ebody3, FUSION, egO_6)
 emodel = egO_6[]
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
 # save model
-println("Saving")
 status = EG_saveModel(emodel, "test.egads")
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 status = EG_saveModel(emodel, "test.step")

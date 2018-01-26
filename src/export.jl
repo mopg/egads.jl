@@ -4,7 +4,7 @@ export EG_open, EG_makeSolidBody, EG_solidBoolean, EG_saveModel
 export EG_getTopology, EG_deleteObject, EG_close
 
 # own functions
-export eg_open, solidBoolean, makeSolidBody 
+export eg_open, solidBoolean, makeSolidBody, getBodyFromModel
 
 # types
 export ego
