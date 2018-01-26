@@ -1,3 +1,17 @@
+# ---------------------------------------------------------------------------- #
+#
+#   types_and_consts_egads.jl
+#
+#   Definition of types and constants in Julia from egads. This file is
+#     automatically generated using the Clang.jl C-wrapper.
+#
+#   jegads
+#   Spring 2018
+#
+#   Max Opgenoord
+#
+# ---------------------------------------------------------------------------- #
+
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
 using Compat

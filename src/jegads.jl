@@ -37,14 +37,12 @@ end
 
 # include wrapper
 
-include("wrapped_api/types_and_consts.jl")
-include("wrapped_api/include.jl")
+include("wrapped_api/types_and_consts_egads.jl")
+include("wrapped_api/include_egads.jl")
 
 include("export.jl")
 
 # include added functions
-export cleanup
-include("cleanup.jl")
 include("added_functionality.jl")
 
 end

@@ -1,4 +1,18 @@
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/egads.h
+# ---------------------------------------------------------------------------- #
+#
+#   include_egads.jl
+#
+#   Julia function calls for egads functionality. This file is automatically
+#     generated using the Clang.jl C-wrapper.
+#
+#   jegads
+#   Spring 2018
+#
+#   Max Opgenoord
+#
+# ---------------------------------------------------------------------------- #
+
+# Julia wrapper for header: EngSketchPad/include/egads.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
 
@@ -409,16 +423,16 @@ end
 function EG_ruled(nsec::Cint, secs, result)
     ccall((:EG_ruled, libegads_include), Cint, (Cint, Ptr{ego}, Ptr{ego}), nsec, secs, result)
 end
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/egadsErrors.h
+# Julia wrapper for header: EngSketchPad/include/egadsErrors.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/egadsTypes.h
+# Julia wrapper for header: EngSketchPad/include/egadsTypes.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/common.h
+# Julia wrapper for header: EngSketchPad/include/common.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/egadsBlendSens.h
+# Julia wrapper for header: EngSketchPad/include/egadsBlendSens.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
 
@@ -441,7 +455,7 @@ end
 function EG_sens_free(cache)
     ccall((:EG_sens_free, libegads_include), Void, (Ptr{Void},), cache)
 end
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/egadsSplineFit.h
+# Julia wrapper for header: EngSketchPad/include/egadsSplineFit.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
 
@@ -480,10 +494,10 @@ end
 function EG_spline2dAprx(e::Cint, im::Cint, jm::Cint, xyz, uknot, vknot, vdata, wesT, easT, south, snor, north, nnor, tol::Cdouble, header, rdata)
     ccall((:EG_spline2dAprx, libegads_include), Cint, (Cint, Cint, Cint, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cint}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}, Cdouble, Ptr{Cint}, Ptr{Ptr{Cdouble}}), e, im, jm, xyz, uknot, vknot, vdata, wesT, easT, south, snor, north, nnor, tol, header, rdata)
 end
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/egadsTris.h
+# Julia wrapper for header: EngSketchPad/include/egadsTris.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/egg.h
+# Julia wrapper for header: EngSketchPad/include/egg.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
 
@@ -510,7 +524,7 @@ end
 function eggFree(gridP)
     ccall((:eggFree, libegads_include), Cint, (Ptr{Void},), gridP)
 end
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/emp.h
+# Julia wrapper for header: EngSketchPad/include/emp.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
 
@@ -577,7 +591,7 @@ end
 function EMP_min(maxproc::Cint, nindex::Cint, minFn, min, imin)
     ccall((:EMP_min, libegads_include), Cint, (Cint, Cint, Ptr{Void}, Ptr{Cdouble}, Ptr{Cint}), maxproc, nindex, minFn, min, imin)
 end
-# Julia wrapper for header: /home/mopg/code/EngSketchPad/include/prm.h
+# Julia wrapper for header: EngSketchPad/include/prm.h
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
 
