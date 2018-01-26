@@ -45,5 +45,6 @@ include("export.jl")
 # include added functions
 export cleanup
 include("cleanup.jl")
+include("added_functionality.jl")
 
 end
