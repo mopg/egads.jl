@@ -3,24 +3,23 @@ using jegads
 width = 5.0
 rad   = 1.0
 
-(context, status) = eg_open( )
+(context, status) = EG_open( )
 if (status < 0) error("Can't open, failure code: %i", status) end
-@show context
 
 # build cylinder
 datacyl = [0.0, 0.0,  width/2.0,
            0.0, 0.0, -width/2.0,
            rad]
-(ebody1, status) = makeSolidBody(context, CYLINDER, datacyl)
+(ebody1, status) = EG_makeSolidBody(context, CYLINDER, datacyl)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
 # build end points of sphere
 datasph = [0.0, 0.0, -width/2.0, rad]
-(ebody2, status) = makeSolidBody(context, SPHERE, datasph)
+(ebody2, status) = EG_makeSolidBody(context, SPHERE, datasph)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
 # boolean operations
-(emodel, status) = solidBoolean(ebody1, ebody2, FUSION)
+(emodel, status) = EG_solidBoolean(ebody1, ebody2, FUSION)
 if (status != EGADS_SUCCESS) cleanup(status, context) end
 
 # save model

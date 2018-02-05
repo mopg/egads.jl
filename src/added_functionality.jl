@@ -12,23 +12,23 @@
 # ---------------------------------------------------------------------------- #
 
 """
-    eg_open( )
+    EG_open( )
 
 Opens an `egads` context.
 """
-function eg_open( )
+function EG_open( )
     ptr_obj = Ref{ego}()
     status = ccall((:EG_open, libegads_include), Cint, (Ptr{ego},), ptr_obj)
     return (ptr_obj[], status)
 end
 
 """
-    solidBoolean(src::ego, tool::ego, oper::Cint )
+    EG_solidBoolean(src::ego, tool::ego, oper::Cint )
 
 Performs a Boolean operation on the `ego` objects `src` and `tool`. `oper`
 specifies the type of Boolean operation, such as `FUSION`, `INTERSECTION`, etc.
 """
-function solidBoolean(src::ego, tool::ego, oper::Cint )
+function EG_solidBoolean(src::ego, tool::ego, oper::Cint )
     model_ptr = Ref{ego}()
     status = ccall((:EG_solidBoolean, libegads_include), Cint, (ego, ego,
                 Cint, Ptr{ego}), src, tool, oper, model_ptr)
@@ -36,13 +36,13 @@ function solidBoolean(src::ego, tool::ego, oper::Cint )
 end
 
 """
-    makeSolidBody(context::ego, stype::Cint, rvec)
+    EG_makeSolidBody(context::ego, stype::Cint, rvec)
 
 Makes a solid object. `context` is the current egads context, `stype` specifies
 the type of object, e.g. CYLINDER, SPHERE, etc. `rvec` is an array which holds
 the data defining the object.
 """
-function makeSolidBody(context::ego, stype::Cint, rvec)
+function EG_makeSolidBody(context::ego, stype::Cint, rvec)
     body_ptr = Ref{ego}()
     status = ccall((:EG_makeSolidBody, libegads_include), Cint, (ego, Cint,
                 Ptr{Cdouble}, Ptr{ego}), context, stype, rvec, body_ptr)
