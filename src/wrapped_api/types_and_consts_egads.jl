@@ -150,6 +150,8 @@ end
 # $(Expr(:typealias, :ego, :(Ptr{egObject})))
 const ego = Ptr{egObject}
 
+const NULL_E = ego(0)
+
 mutable struct egCntxt
     outLevel::Cint
     tess::NTuple{2, Cdouble}

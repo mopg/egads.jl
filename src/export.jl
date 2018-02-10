@@ -14,12 +14,18 @@
 # functions
 export EG_open, EG_makeSolidBody, EG_solidBoolean, EG_saveModel
 export EG_getTopology, EG_deleteObject, EG_close
+export EG_makeTopology, EG_makeGeometry, EG_getContext
+export EG_invEvaluate, EG_makeFace, EG_otherCurve, EG_getRange, EG_filletBody
+export EG_matchBodyFaces, EG_sewFaces, EG_join
 
 # own functions
 export getBodyFromModel, cleanup
 
 # types
 export ego
+
+# null pointer
+export NULL_E
 
 # constants
 export MAGIC, MTESSPARAM, CONTXT, TRANSFORM, TESSELLATION,NIL, EMPTY
