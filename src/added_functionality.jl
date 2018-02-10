@@ -22,6 +22,12 @@ function EG_open( )
     return (ptr_obj[], status)
 end
 
+"""
+    EG_getContext(object::ego)
+
+Returns the `egads` context.
+"""
+
 function EG_getContext(object::ego)
     context_ptr = Ref{ego}()
     status = ccall((:EG_getContext, libegads_include), Cint, (ego, Ptr{ego}), object, context_ptr)
@@ -55,6 +61,12 @@ function EG_makeSolidBody(context::ego, stype::Cint, rvec)
     return (body_ptr[], status)
 end
 
+"""
+    EG_filletBody(src::ego, nedge::Cint, edges, radius::Cdouble, facemap)
+
+Takes in a body `src` and puts a fillet of radius `radius` around the edges
+defined in `edges`.
+"""
 function EG_filletBody(src::ego, nedge::Cint, edges, radius::Cdouble, facemap)
     result_ptr = Ref{ego}()
     status = ccall((:EG_filletBody, libegads_include), Cint, (ego, Cint, Ptr{ego}, Cdouble, Ptr{ego}, Ptr{Ptr{Cint}}), src, nedge, edges, radius, result_ptr, facemap)
@@ -73,6 +85,11 @@ function EG_makeTopology(context::ego, geom::ego, oclass::Cint, mtype::Cint, lim
     return (topo_ptr[], status)
 end
 
+"""
+    EG_makeGeometry(context::ego, oclass::Cint, mtype::Cint, refGeom::ego, ivec, rvec)
+
+Returns a geometry.
+"""
 function EG_makeGeometry(context::ego, oclass::Cint, mtype::Cint, refGeom::ego, ivec, rvec)
     geom_ptr = Ref{ego}()
     status = ccall((:EG_makeGeometry, libegads_include), Cint, (ego, Cint, Cint, ego, Ptr{Cint}, Ptr{Cdouble}, Ptr{ego}), context, oclass, mtype, refGeom, ivec, rvec, geom_ptr)
@@ -110,36 +127,65 @@ function getBodyFromModel( topo::ego )
     return (child0, status)
 end
 
+"""
+    EG_invEvaluate(geom::ego, xyz, results)
+
+Returns parameters from inverse evaluation.
+"""
 function EG_invEvaluate(geom::ego, xyz, results)
     param_ptr = Ref{Cdouble}(0.0)
     status = ccall((:EG_invEvaluate, libegads_include), Cint, (ego, Ptr{Cdouble}, Ptr{Cdouble}, Ptr{Cdouble}), geom, xyz, param_ptr, results)
     return (param_ptr[], status)
 end
 
+"""
+    EG_copyObject(object::ego, oform)
+
+Copies the `ego` object `object`.
+"""
 function EG_copyObject(object::ego, oform)
     copy_ptr = Ref{ego}()
     status = ccall((:EG_copyObject, libegads_include), Cint, (ego, Ptr{Void}, Ptr{ego}), object, oform, copy_ptr)
     return (copy_ptr[],status)
 end
 
+"""
+    EG_makeFace(object::ego, mtype::Cint, limits)
+
+Makes a face and returns it.
+"""
 function EG_makeFace(object::ego, mtype::Cint, limits)
     face_ptr = Ref{ego}()
     status = ccall((:EG_makeFace, libegads_include), Cint, (ego, Cint, Ptr{Cdouble}, Ptr{ego}), object, mtype, limits, face_ptr)
     return (face_ptr[],status)
 end
 
+"""
+    EG_otherCurve(surface::ego, curve::ego, tol::Cdouble)
+
+"""
 function EG_otherCurve(surface::ego, curve::ego, tol::Cdouble)
     newcurve_ptr = Ref{ego}()
     status = ccall((:EG_otherCurve, libegads_include), Cint, (ego, ego, Cdouble, Ptr{ego}), surface, curve, tol, newcurve_ptr)
     return (newcurve_ptr[],status)
 end
 
+"""
+    EG_sewFaces(nobj::Cint, objs, toler::Cdouble, flag::Cint)
+
+Sews the faces in `objs` together and returns a new model.
+"""
 function EG_sewFaces(nobj::Cint, objs, toler::Cdouble, flag::Cint)
     result_ptr = Ref{ego}()
     status = ccall((:EG_sewFaces, libegads_include), Cint, (Cint, Ptr{ego}, Cdouble, Cint, Ptr{ego}), nobj, objs, toler, flag, result_ptr)
     return (result_ptr[], status)
 end
 
+"""
+    EG_join( ebody1::ego, ebody2::ego, toler::Cdouble)
+
+Joins two bodies with common faces.
+"""
 function EG_join( ebody1::ego, ebody2::ego, toler::Cdouble)
     # find faces - 1
     nface1_ptr = Ref{Cint}(0)
@@ -192,27 +238,23 @@ function EG_join( ebody1::ego, ebody2::ego, toler::Cdouble)
 
 end
 
+"""
+    cleanup( status::Cint, context::ego )
+
+Cleans up the context if something went wrong.
+"""
 function cleanup( status::Cint, context::ego )
     warn("No success, status: ", status )
     status = EG_close(context)
     @printf("EG_close -> status=%d\n", status);
 end
 
+"""
+    cleanup( context::ego )
+
+Cleans up the context at end of a file.
+"""
 function cleanup( context::ego )
     status = EG_close(context)
     @printf("EG_close -> status=%d\n", status);
 end
-
-# function join( )
-#
-#     status = EG_matchBodyFaces(ebodyl, ebodyr, toler, &nmatch, &matches)
-#
-#     if (nmatch < 1) {
-#         MODL->sigCode = OCSM_FACE_NOT_FOUND;
-#         signalError(MODL, MODL->sigCode, ibrch,
-#                     "expecting nmatch>=1 but got %d", nmatch);
-#         FREE(matches);
-#         goto cleanup;
-#     }
-#
-# end

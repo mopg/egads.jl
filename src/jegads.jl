@@ -28,11 +28,24 @@ import Compat
 
 # find egads library file
 if Compat.Sys.isapple()
-    const libegads_include = "/Users/Max/Code/ESP112/EngSketchPad/lib/libegads.dylib"
+    ext = ".dylib"
 elseif Compat.Sys.islinux()
-    const libegads_include = "/home/mopg/code/EngSketchPad/lib/libegads.so"
+    ext = ".so"
 else
     error("Unsupported operating system")
+end
+libname      = string("libegads", ext)
+commonlocesp = ["Code/ESP112/","code/","Code/"]
+libdir       = "EngSketchPad/lib"
+commonloc    = similar(commonlocesp)
+for jj in 1:length(commonloc)
+    commonloc[jj] = joinpath(homedir(),commonlocesp[jj],libdir)
+end
+libfind = Base.Libdl.find_library( libname, commonloc )
+if isempty(libfind)
+    error("EGADS library not found, update the location in jegads.jl or update commonlocesp")
+else
+    const libegads_include = libfind
 end
 
 # include wrapper
