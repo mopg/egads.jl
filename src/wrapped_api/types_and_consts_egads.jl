@@ -144,10 +144,8 @@ mutable struct egObject
     tref::Ptr{egObject}
     prev::Ptr{egObject}
     next::Ptr{egObject}
-    # egObject() = new()
 end
 
-# $(Expr(:typealias, :ego, :(Ptr{egObject})))
 const ego = Ptr{egObject}
 
 const NULL_E = ego(0)
