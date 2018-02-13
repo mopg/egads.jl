@@ -239,6 +239,44 @@ function EG_join( ebody1::ego, ebody2::ego, toler::Cdouble)
 end
 
 """
+    EG_getBodyFaces( ebody::ego, toler::Cdouble)
+
+Get faces from body.
+"""
+function EG_getBodyFaces( ebody::ego, toler::Cdouble)
+
+    nface_ptr = Ref{Cint}(0)
+    faces_ptr = Ref{Ptr{ego}}()
+    status = jegads.EG_getBodyTopos(ebody, NULL_E, FACE, nface_ptr, faces_ptr)
+    nface  = nface_ptr[]
+
+    return (nface, faces_ptr, status)
+
+end
+
+"""
+    EG_matchBodyFaces( ebody1::ego, ebody2::ego, toler::Cdouble)
+
+Matches the faces on both bodies.
+"""
+function EG_matchBodyFaces( ebody1::ego, ebody2::ego, toler::Cdouble)
+
+    # match faces
+    nmatch_ptr = Ref{Cint}(0)
+    match_ptr  = Ref{Ptr{Cint}}()
+    status = EG_matchBodyFaces(ebody1, ebody2, toler, nmatch_ptr, match_ptr)
+    nmatch = nmatch_ptr[]
+    matches = fill( 0, 2*nmatch )
+    for ii in 1:nmatch
+        matches[2*ii-1] = unsafe_load(match_ptr[],2*ii-1)
+        matches[2*ii]   = unsafe_load(match_ptr[],2*ii)
+    end
+
+    return (nmatch, matches, status)
+
+end
+
+"""
     cleanup( status::Cint, context::ego )
 
 Cleans up the context if something went wrong.

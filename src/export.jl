@@ -48,7 +48,7 @@ export EG_alloc, EG_calloc, EG_reall, EG_free, EG_revision, EG_open,
     prm_EvalCfit, prm_EvalGrid, prm_FreeCfit, prm_FreeGrid
 
 # own functions
-export getBodyFromModel, cleanup, EG_join
+export getBodyFromModel, cleanup, EG_join, EG_getBodyFaces
 
 # types
 export ego
