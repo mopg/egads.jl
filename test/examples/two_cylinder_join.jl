@@ -1,4 +1,4 @@
-using jegads
+using egads
 
 width = 5.0
 rad   = 1.0
@@ -18,7 +18,7 @@ if (status != EGADS_SUCCESS) cleanup(status, context) end
 # find faces
 nface1_ptr = Ref{Cint}(0)
 faces1_ptr = Ref{Ptr{ego}}()
-jegads.EG_getBodyTopos(ebody1, NULL_E, FACE, nface1_ptr, faces1_ptr)
+egads.EG_getBodyTopos(ebody1, NULL_E, FACE, nface1_ptr, faces1_ptr)
 nface1 = nface1_ptr[]
 
 # build cylinder 2
@@ -31,7 +31,7 @@ if (status != EGADS_SUCCESS) cleanup(status, context) end
 # find faces
 nface2_ptr = Ref{Cint}(0)
 faces2_ptr = Ref{Ptr{ego}}()
-jegads.EG_getBodyTopos(ebody2, NULL_E, FACE, nface2_ptr, faces2_ptr)
+egads.EG_getBodyTopos(ebody2, NULL_E, FACE, nface2_ptr, faces2_ptr)
 nface2 = nface2_ptr[]
 
 # match faces

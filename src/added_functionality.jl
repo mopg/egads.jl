@@ -4,7 +4,7 @@
 #
 #   Additional functions that make using egads from julia more straightforward.
 #
-#   jegads
+#   egads.jl
 #   Spring 2018
 #
 #   Max Opgenoord
@@ -190,13 +190,13 @@ function EG_join( ebody1::ego, ebody2::ego, toler::Cdouble)
     # find faces - 1
     nface1_ptr = Ref{Cint}(0)
     faces1_ptr = Ref{Ptr{ego}}()
-    jegads.EG_getBodyTopos(ebody1, NULL_E, FACE, nface1_ptr, faces1_ptr)
+    egads.EG_getBodyTopos(ebody1, NULL_E, FACE, nface1_ptr, faces1_ptr)
     nface1 = nface1_ptr[]
 
     # find faces - 2
     nface2_ptr = Ref{Cint}(0)
     faces2_ptr = Ref{Ptr{ego}}()
-    jegads.EG_getBodyTopos(ebody2, NULL_E, FACE, nface2_ptr, faces2_ptr)
+    egads.EG_getBodyTopos(ebody2, NULL_E, FACE, nface2_ptr, faces2_ptr)
     nface2 = nface2_ptr[]
 
     # match faces
@@ -247,7 +247,7 @@ function EG_getBodyFaces( ebody::ego, toler::Cdouble)
 
     nface_ptr = Ref{Cint}(0)
     faces_ptr = Ref{Ptr{ego}}()
-    status = jegads.EG_getBodyTopos(ebody, NULL_E, FACE, nface_ptr, faces_ptr)
+    status = egads.EG_getBodyTopos(ebody, NULL_E, FACE, nface_ptr, faces_ptr)
     nface  = nface_ptr[]
 
     return (nface, faces_ptr, status)

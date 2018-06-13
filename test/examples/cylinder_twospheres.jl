@@ -1,4 +1,4 @@
-using jegads
+using egads
 
 # const libegads_include = "/home/mopg/code/EngSketchPad/lib/libegads.so"
 # include the above in the precompilation step. use libdl.find_library to look for common places where this library file is located

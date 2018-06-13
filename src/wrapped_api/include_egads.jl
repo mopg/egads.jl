@@ -5,7 +5,7 @@
 #   Julia function calls for egads functionality. This file is automatically
 #     generated using the Clang.jl C-wrapper.
 #
-#   jegads
+#   egads.jl
 #   Spring 2018
 #
 #   Max Opgenoord

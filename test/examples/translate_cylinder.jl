@@ -1,4 +1,4 @@
-using jegads
+using egads
 
 width = 5.0
 rad   = 1.0
@@ -30,7 +30,7 @@ matrix = [ 1.0, 0.0, 0.0, Δx[1],
 
 exform_ptr = Ref{ego}()
 status = EG_makeTransform(context, matrix, exform_ptr)
-if (status != jegads.EGADS_SUCCESS) jegads.cleanup(status, context) end
+if (status != egads.EGADS_SUCCESS) egads.cleanup(status, context) end
 (ebody22,status) = EG_copyObject(ebody2, exform_ptr[])
 # join
 toler = Cdouble(0.0)

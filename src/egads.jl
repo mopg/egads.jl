@@ -1,10 +1,10 @@
 # ---------------------------------------------------------------------------- #
 #
-#   jegads.jl
+#   egads.jl
 #
 #   Julia wrapper for egads (part of Engineering Sketch Pad)
 #
-#   jegads
+#   egads.jl
 #   Spring 2018
 #
 #   Max Opgenoord
@@ -22,7 +22,7 @@ Max Opgenoord
 
 Spring 2018
 """
-module jegads
+module egads
 
 import Compat
 
@@ -43,7 +43,7 @@ for jj in 1:length(commonloc)
 end
 libfind = Base.Libdl.find_library( libname, commonloc )
 if isempty(libfind)
-    error("EGADS library not found, update the location in jegads.jl or update commonlocesp")
+    error("EGADS library not found, update the location in egads.jl or update commonlocesp")
 else
     const libegads_include = libfind
 end

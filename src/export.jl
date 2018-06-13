@@ -4,7 +4,7 @@
 #
 #   List of functions and constants that are exposed outside of the package
 #
-#   jegads
+#   egads.jl
 #   Spring 2018
 #
 #   Max Opgenoord

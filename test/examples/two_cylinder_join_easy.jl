@@ -1,4 +1,4 @@
-using jegads
+using egads
 
 width = 5.0
 rad   = 1.0

@@ -1,6 +1,6 @@
 # ---------------------------------------------------------------------------- #
 #
-#   jegads.jl
+#   wrapEgads.jl
 #
 #   Generates the files in wrapped_api/.
 #
@@ -10,11 +10,11 @@
 #   The Clang.jl package is used to wrap the egads API.
 #
 #   To run the script from Julia console:
-#     include(joinpath(Pkg.dir("jegads"), "src", "wrap_egads.jl"));
+#     include(joinpath(Pkg.dir("egads"), "src", "wrap_egads.jl"));
 #   Note that you really should not have to do this, this script is just
 #   provided for completeness.
 #
-#   jegads
+#   egads.jl
 #   Spring 2018
 #
 #   Max Opgenoord

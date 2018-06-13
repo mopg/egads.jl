@@ -5,7 +5,7 @@
 #   Definition of types and constants in Julia from egads. This file is
 #     automatically generated using the Clang.jl C-wrapper.
 #
-#   jegads
+#   egads.jl
 #   Spring 2018
 #
 #   Max Opgenoord
